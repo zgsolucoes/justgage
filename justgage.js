@@ -267,9 +267,9 @@
     // convert large numbers for min, max, value to human friendly (e.g. 1234567 -> 1.23M)
     humanFriendly : obj.kvLookup('humanFriendly', config, dataset, false),
 
-	  // humanFriendlyUnits : Array or String
-	  // units to convert value to human friendly, defaults to "KMGTPE" (e.g. 123456 -> 1.23K, 1234567 -> 1.23M)
-	  humanFriendlyUnits: obj.kvLookup('humanFriendlyUnits', config, dataset, "KMGTPE"),
+	// humanFriendlyUnits : Array or String
+	// units to convert value to human friendly, defaults to "KMGTPE" (e.g. 123456 -> 1.23K, 1234567 -> 1.23M)
+	humanFriendlyUnits: obj.kvLookup('humanFriendlyUnits', config, dataset, "KMGTPE"),
 
     // noGradient : bool
     // whether to use gradual color change for value, or sector-based
@@ -305,7 +305,11 @@
 
 	// canvasViewBoxX: int
 	// x position of canvas view box
-	canvasViewBoxX: obj.kvLookup('canvasViewBoxX', config, dataset, 0)
+	canvasViewBoxX: obj.kvLookup('canvasViewBoxX', config, dataset, 0),
+
+	// showTitle: boolean
+	// show gauge title
+	showTitle: obj.kvLookup("showTitle", config, dataset, true)
   };
 
   // variables
@@ -346,7 +350,7 @@
   }
 
   if (obj.config.relativeGaugeSize === true) {
-	obj.canvas.setViewBox(obj.config.canvasViewBoxX, obj.config.canvasViewBoxY, obj.config.width, obj.config.height, true);
+    obj.canvas.setViewBox(obj.config.canvasViewBoxX, obj.config.canvasViewBoxY, obj.config.width, obj.config.height, true);
   }
 
   // canvas dimensions
@@ -357,7 +361,7 @@
     canvasW = obj.config.width;
     canvasH = obj.config.height;
   } else if (obj.config.parentNode !== null) {
-	obj.canvas.setViewBox(obj.config.canvasViewBoxX, obj.config.canvasViewBoxY, obj.config.width, obj.config.height, true);
+    obj.canvas.setViewBox(obj.config.canvasViewBoxX, obj.config.canvasViewBoxY, obj.config.width, obj.config.height, true);
     canvasW = 200;
     canvasH = 150;
   } else {
@@ -508,7 +512,7 @@
   };
 
   // var clear
-  canvasW, canvasH, widgetW, widgetH, aspect, dx, dy, titleFontSize, titleX, titleY, valueFontSize, valueX, valueY, labelFontSize, labelX, labelY, minFontSize, minX, minY, maxFontSize, maxX, maxY = null;
+	titleFontSize, titleX, titleY, canvasW, canvasH, widgetW, widgetH, aspect, dx, dy, valueFontSize, valueX, valueY, labelFontSize, labelX, labelY, minFontSize, minX, minY, maxFontSize, maxX, maxY = null;
 
   // pki - custom attribute for generating gauge paths
   obj.canvas.customAttributes.pki = function (value, min, max, w, h, dx, dy, gws, donut) {
@@ -604,14 +608,13 @@
     ]
   });
 
-obj.txtTitle = obj.config.title;
-
   if(obj.config.donut) {
     obj.level.transform("r" + obj.config.donutStartAngle + ", " + (obj.params.widgetW/2 + obj.params.dx) + ", " + (obj.params.widgetH/1.95 + obj.params.dy));
   }
 
   // title
-  if (obj.txtTitle) {
+  obj.txtTitle = obj.config.title;
+  if (obj.config.showTitle) {
   	obj.txtTitle = obj.canvas.text(obj.params.titleX, obj.params.titleY, obj.config.title);
   	obj.txtTitle.attr({
     	"font-size":obj.params.titleFontSize,
