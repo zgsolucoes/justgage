@@ -350,7 +350,7 @@
   }
 
   if (obj.config.relativeGaugeSize === true) {
-	obj.canvas.setViewBox(obj.config.canvasViewBoxX, obj.config.canvasViewBoxY, obj.config.width, obj.config.height, true);
+    obj.canvas.setViewBox(obj.config.canvasViewBoxX, obj.config.canvasViewBoxY, obj.config.width, obj.config.height, true);
   }
 
   // canvas dimensions
@@ -361,7 +361,7 @@
     canvasW = obj.config.width;
     canvasH = obj.config.height;
   } else if (obj.config.parentNode !== null) {
-	obj.canvas.setViewBox(obj.config.canvasViewBoxX, obj.config.canvasViewBoxY, obj.config.width, obj.config.height, true);
+    obj.canvas.setViewBox(obj.config.canvasViewBoxX, obj.config.canvasViewBoxY, obj.config.width, obj.config.height, true);
     canvasW = 200;
     canvasH = 150;
   } else {
@@ -399,11 +399,9 @@
     dy = (canvasH - widgetH)/2;
 
     // title
-    if (obj.config.showTitle) {
-    	titleFontSize = ((widgetH / 8) > 10) ? (widgetH / 10) : 10;
-    	titleX = dx + widgetW / 2;
-    	titleY = dy + widgetH / 11;
-  	}
+    titleFontSize = ((widgetH / 8) > 10) ? (widgetH / 10) : 10;
+    titleX = dx + widgetW / 2;
+    titleY = dy + widgetH / 11;
 
     // value
     valueFontSize = ((widgetH / 6.4) > 16) ? (widgetH / 5.4) : 18;
@@ -463,11 +461,9 @@
     dy = (canvasH - widgetH)/2;
 
     // title
-	if (obj.config.showTitle) {
-    	titleFontSize = ((widgetH / 8) > obj.config.titleMinFontSize) ? (widgetH / 10) : obj.config.titleMinFontSize;
-    	titleX = dx + widgetW / 2;
-    	titleY = dy + widgetH / 6.4;
-	}
+    titleFontSize = ((widgetH / 8) > obj.config.titleMinFontSize) ? (widgetH / 10) : obj.config.titleMinFontSize;
+    titleX = dx + widgetW / 2;
+    titleY = dy + widgetH / 6.4;
 
     // value
     valueFontSize = ((widgetH / 6.5) > obj.config.valueMinFontSize) ? (widgetH / 6.5) : obj.config.valueMinFontSize;
@@ -617,7 +613,7 @@
   }
 
   // title
-	obj.txtTitle = obj.config.title;
+  obj.txtTitle = obj.config.title;
   if (obj.config.showTitle) {
   	obj.txtTitle = obj.canvas.text(obj.params.titleX, obj.params.titleY, obj.config.title);
   	obj.txtTitle.attr({
